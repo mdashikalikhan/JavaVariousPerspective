@@ -27,4 +27,8 @@ public class GuavaJoinSplitTest extends TestInitialize {
 		assertThat(result, containsString("John = 10000"));
 		assertThat(result, containsString("Jane = 15000"));
 	}
+	
+	public void joinNestedCollections() {
+		
+	}
 }
