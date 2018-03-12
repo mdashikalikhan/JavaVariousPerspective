@@ -7,8 +7,11 @@ public class JSPUtility {
 
 	private int commented = 0;
 	private int tagStarted = 0;
+	private int headEnded = 0;
 	private int bodyTagStarted = 0;
-	private String tag;
+	private int scriptStarted = 0;
+	private String tag="";
+	@SuppressWarnings("unchecked")
 	private List<String> tagList  = new ArrayList();
 
 	public List<String> getTagList() {
@@ -17,18 +20,55 @@ public class JSPUtility {
 
 	public void doParse(String str) {
 		tagList.clear();
-		processContent(str);
-		for(String txt : tagList) {
-			System.out.println(txt);
+		if (checkHead(str) == 0)
+			return;
+		if(checkScript(str)==1) {
+			return;
 		}
+		processContent(str);
 	}
 
+	private int checkScript(String str) {
+		if(str.toLowerCase().contains("<script") && scriptStarted==0) {
+			scriptStarted=1;
+		} else if (str.toLowerCase().replace(" ", "").contains("</script>")) {
+			scriptStarted = 0;
+		}
+		return scriptStarted;
+	}
+	
+	@SuppressWarnings("unused")
 	private void processContent(String str) {
+		str = removeSpecialCharacters(str);
 		String actualContents = getUncommentedContents(str);
+		/*System.out.println(actualContents);*/
 		removeNotRequiredContents(actualContents.toString());
 		
 	}
+	
+	private String removeSpecialCharacters(String str){
+		str = str.replace("\">>\"", "\"\"");
+		str = str.replace("value=\">>\"", "value=\"\"");
+		str = str.replace("value=\"<<\"", "value=\"\"");
+		str = str.replace("\">\"", "\"&gt;");
+		str = str.replace("\"<\"", "\"&lt;");
+		str = str.replace("value=\">", "");
+		str = str.replace("-->", "");
+		str = str.replace(">><", "><");
+		str = str.replace("> ><", "><");
+		return str;
+	}
 
+	private int checkHead(String str) {
+		int status = 0;
+		if (headEnded == 0
+				&& str.replace(" ", "").toLowerCase().contains("</head>")) {
+			headEnded = 1;
+		} 
+		status = headEnded;
+		return status;
+	}
+	
 	private void removeNotRequiredContents(String str) {
 		StringBuffer text = new StringBuffer(str);
 		startExecution(text);
@@ -62,10 +102,10 @@ public class JSPUtility {
 	private int checkTag() {
 		int status = 0;
 		
-		if(!tag.trim().equals("") && tagStarted==0 && bodyTagStarted==0) {
+		if(tag!=null && !tag.trim().equals("") && tagStarted==0 && bodyTagStarted==0) {
 			bodyTagStarted = bodayTagCheck();
 		} 
-		if(!tag.trim().equals("") && tagStarted==0 && bodyTagStarted==1){
+		if(tag!=null && !tag.trim().equals("") && tagStarted==0 && bodyTagStarted==1){
 			status = jspTagCheck();
 		}
 		return status;
@@ -85,39 +125,47 @@ public class JSPUtility {
 		String text[] = tag.split("\\s+"); 
 		if(text[0].contains(":") && !text[0].contains("/") && !text[0].contains("!")) {
 			status = 1;
+			tag = tag.replace("/", "").trim();
 		}
 		return status;
 	}
 	
 	private void setTagContent(String str) {
-		String content="";
-		if(str.indexOf("<")>=0 && tagStarted==0) {
-			if(str.indexOf(">", str.indexOf("<"))>=0) {
-				content = str.substring(str.indexOf("<")+1, str.indexOf(">"));
-			} else {
-				content = str.substring(str.indexOf("<")+1);
-				tagStarted++;
-			}
+		String content = "";
+		if (str.indexOf("<") >= 0 && tagStarted == 0) {
 			
-		} else if(str.indexOf(">")>=0 && tagStarted==1) {
-			content = str.substring(str.indexOf(">"));
+			if (str.indexOf(">", str.indexOf("<")) >= 0) {
+				content = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+			} else {
+				content = str.substring(str.indexOf("<") + 1);
+				tagStarted++;
+				tag = "";
+			}
+			setTag(content);
+		} else if (str.indexOf(">") >= 0 && tagStarted == 1) {
+			content = str.substring(0, str.indexOf(">"));
+			setTag(content);
 			tagStarted--;
+		} else if (tagStarted == 1) {
+			content = str.trim();
+			setTag(content);
 		}
-		setTag(content);
+			
+
 	}
-	
 	
 	private void setTag(String str) {
 		if(tagStarted==0){
 			tag = str;
 		} else {
 			tag += str;
+			
 		}
 	}
 	
 	private String getUncommentedContents(String str) {
 		String strText = removeComments(str);
-		return strText.trim();
+		return strText;
 	}
 
 	private String removeComments(String str) {
