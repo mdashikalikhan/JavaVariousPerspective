@@ -39,8 +39,10 @@ public class JSPUtility {
 	
 	@SuppressWarnings("unused")
 	private void processContent(String str) {
-		str = removeSpecialCharacters(str);
+		//str = removeSpecialCharacters(str);
+		//System.out.println(str);
 		String actualContents = getUncommentedContents(str);
+		actualContents = removeSpecialCharacters(actualContents);
 		/*System.out.println(actualContents);*/
 		removeNotRequiredContents(actualContents.toString());
 		

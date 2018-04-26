@@ -23,7 +23,7 @@ public class JSPParser {
 	public static void main(String args[]) {
 
 		/*File file = new File(
-				"D:\\DEV_BRANCH_K1\\Panaceaweb\\WebRoot\\GTE\\qbgiss.jsp");
+				"D:\\DEV_BRANCH_K1\\Panaceaweb\\WebRoot\\ADV\\elnaccls.jsp"); 
 
 		try {
 			JSPRead jspReader = new JSPRead();
@@ -38,7 +38,7 @@ public class JSPParser {
 			e.printStackTrace();
 		}
 		for (String filePath : jspFiles) {
-			/*System.out.println(filePath);*/
+			System.out.println(filePath);
 			File file = new File(filePath);
 
 			try {
