@@ -58,19 +58,19 @@ public class SummationPairs {
 		
 	}
 	
-	public static int SumPairs(int[] input, int k) {
+	public static int countPairs(int[] dataSetArray, int sum) {
 
-		Map<Integer, Integer> pairs = new HashMap<Integer, Integer>();
-		int tmp = 0;
-		for (int data : input) {
-			if (pairs.containsKey(k - data) && pairs.get(k - data) == 0) {
-				tmp++;
-				pairs.put((k - data), pairs.get(k - data) + 1);
-			} else if (!pairs.containsKey(data)) {
-				pairs.put(data, 0);
+		Map<Integer, Integer> mapNumbers = new HashMap<Integer, Integer>();
+		int countPairs = 0;
+		for (int data : dataSetArray) {
+			if (mapNumbers.containsKey(sum - data) && mapNumbers.get(sum - data) == 0) {
+				countPairs++;
+				mapNumbers.put((sum - data), mapNumbers.get(sum - data) + 1);
+			} else if (!mapNumbers.containsKey(data)) {
+				mapNumbers.put(data, 0);
 			}
 		}
 
-		return tmp;
+		return countPairs;
 	}
 }
