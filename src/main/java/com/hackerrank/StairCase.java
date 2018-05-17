@@ -24,7 +24,7 @@ public class StairCase {
 			
 			if(stage!=n) {
 				System.out.println();
-			}
+			} 
 		}
 	}
 	
