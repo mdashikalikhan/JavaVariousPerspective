@@ -33,6 +33,7 @@ public class LinkedList {
 		linkedList.push( -1);
 		linkedList.append(-10);
 		linkedList.insertAfter(linkedList.head.next.next.next, 9999);
+		linkedList.deleteNode(60);
 		linkedList.printList(linkedList.head);
 		
 		/*Node nodeFirst = new LinkedList.Node(103);
@@ -100,6 +101,26 @@ public class LinkedList {
 		Node node = new Node(val);
 		node.next = previousNode.next;
 		previousNode.next = node;
+	}
+	
+	/**
+	 * 
+	 * @param val
+	 * deletes the first occurrence of val
+	 */
+	public void deleteNode(int val){
+		Node temp = head, prev = null;
+		
+		while(temp != null && temp.data != val){
+			prev = temp;
+			temp = temp.next;
+		}
+		
+		if(temp == null){
+			return;
+		}
+		
+		prev.next = temp.next;
 	}
 
 }

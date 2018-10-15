@@ -3,7 +3,7 @@ package com.hackerrank;
 
 public class ExtraLongFactorial {
 	public static void main(String[] args) {
-		factorial(1050);
+		factorial(1000);
 	}
 	
 	static void factorial(int n) {
