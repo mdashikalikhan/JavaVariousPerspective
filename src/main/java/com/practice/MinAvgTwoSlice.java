@@ -33,7 +33,7 @@ public class MinAvgTwoSlice {
 		curAvg = ((double) (a[a.length-1] + a[a.length-2] )) / 2;
 
 		if (curAvg < minAvg) {
-			minIDx = a.length-1;
+			minIDx = a.length-2;
 			minAvg = curAvg;
 
 		}
