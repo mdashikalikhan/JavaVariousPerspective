@@ -5,18 +5,18 @@ import java.util.Arrays;
 public class NumberOfIntersections {
 
 	public static void main(String[] args) {
-		int A[] = { 1, 5, 2, 1, 4, 0 };
+		int A[] = {1, 2147483647, 0}/*{ 1, 5, 2, 1, 4, 0 }*/;
 		
-		NumberOfIntersections ans = new NumberOfIntersections();
-		System.out.println(ans.solution(A)); 
-		int startpoint[] = new int[A.length];
-		int endpoint[] = new int[A.length];
+		/*NumberOfIntersections ans = new NumberOfIntersections();
+		System.out.println(ans.solution(A)); */
+		long startpoint[] = new long[A.length];
+		long endpoint[] = new long[A.length];
 		int open = 0;
 		int intersections = 0;
 
 		for (int i = 0; i < A.length; i++) {
-			startpoint[i] = i - A[i];
-			endpoint[i] = i + A[i];
+			startpoint[i] = (long)i - (long)A[i];
+			endpoint[i] = (long)i + (long)A[i];
 		}
 
 		Arrays.sort(startpoint);
@@ -33,7 +33,20 @@ public class NumberOfIntersections {
 		}
 
 		System.out.println();
+		
+		int j=0;
+		for(int i=0; i<endpoint.length; i++) {
+			for(; j<endpoint.length && startpoint[j]<=endpoint[i] ;j++) {
+				open++;
+			}
+			open--;
+			intersections+=open;
+		}
 
+		if(intersections>10000000) {
+			intersections = -1;
+		}
+		System.out.println(intersections);
 		/*int[] positions = new int[A.length * 2];
 		int[] posOpen = new int[A.length * 2];
 		int[] posClose = new int[A.length * 2];
