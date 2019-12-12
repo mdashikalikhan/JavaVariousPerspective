@@ -3,12 +3,12 @@ package com.practice;
 public class MaximalSlice {
 
 	public static void main(String[] args) {
-		int[] A = {-3,-2,-6,-4,-1};
+		int[] A = {-2,1};
 		int cumulative = A[0];
 		int maxSlice = A[0];
 		
 		for(int i=1; i<A.length; i++) {
-			if(cumulative + A[i] > cumulative) {
+			if(cumulative + A[i] > A[i]) {
 				cumulative += A[i];
 			} else {
 				cumulative = A[i];
