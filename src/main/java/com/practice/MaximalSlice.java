@@ -13,7 +13,7 @@ public class MaximalSlice {
 			} else {
 				cumulative = A[i];
 			}
-			if(cumulative > maxSlice) {
+			if(cumulative > maxSlice)
 				maxSlice = cumulative;
 			}
 		}
