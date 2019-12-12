@@ -3,7 +3,7 @@ package com.practice;
 public class MaximalSlice {
 
 	public static void main(String[] args) {
-		int[] A = {-2,1};
+		int[] A = {-2, 1, -3, 4, -1, 2, 1, -5, 4}/*{-2,1}*/;
 		int cumulative = A[0];
 		int maxSlice = A[0];
 		
@@ -13,7 +13,7 @@ public class MaximalSlice {
 			} else {
 				cumulative = A[i];
 			}
-			if(cumulative > maxSlice)
+			if(cumulative > maxSlice) {
 				maxSlice = cumulative;
 			}
 		}
