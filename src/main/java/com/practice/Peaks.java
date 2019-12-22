@@ -6,8 +6,7 @@ import java.util.List;
 public class Peaks {
 
 	public static void main(String[] args) {
-		int[] A = {1,2,3,4,3,4,1,2,3,4,6,2};
-		
+		int[] A = {1,2,4,3} /*{1,2,3,4,3,4,1,2,3,4,6,2}*/;
 		List<Integer> p = new ArrayList<>();
 		
 		for(int i=1; i<A.length-1; i++) {
