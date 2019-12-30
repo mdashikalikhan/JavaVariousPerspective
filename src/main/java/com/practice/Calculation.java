@@ -25,6 +25,29 @@ public class Calculation {
 		Object objLoanAmt =  "324324.3254325";
         BigDecimal loanValue = new BigDecimal(objLoanAmt.toString());
         System.out.println(loanValue.toString());
+        int[] c = {0,0,0,1,0,0};
+        System.out.println(jumpingOnClouds(c));
 	}
+	
+	static int jumpingOnClouds(int[] c) {
+        int jumps = 0;
+        for (int i=0; i<c.length; ){
+
+            if(i==(c.length-1)){
+            	i++;
+                continue;
+            }
+
+            if(((i+2) < c.length ) && (c[i+2]==0)){
+                jumps++;
+                i= i + 2;
+            } else if( ((i+1) < c.length) && (c[i+1]==0)){
+                jumps++;
+                i= i + 1;
+            }
+        }
+        return jumps;
+
+    }
 
 }
