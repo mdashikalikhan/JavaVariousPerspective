@@ -6,7 +6,7 @@ public class QuickSortImplementation {
 
 	public static void main(String[] args) {
 		int arr[] = {35, 33, 42, 10, 14, 19, 27, 44, 26, 31};
-		arr = new int[] {4,5,3,12};
+		//arr = new int[] {4,5,3,12};
 		/*System.out.println(Arrays.toString(arr));
 		System.out.println(partition(arr, 0, arr.length-1));*/
 		quickSort(arr, 0, arr.length-1);
