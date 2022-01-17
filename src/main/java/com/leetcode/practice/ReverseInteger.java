@@ -3,6 +3,8 @@ package com.leetcode.practice;
 public class ReverseInteger {
 	public static void main(String[] args) {
 		int num1 =  -2147483648;
+		int x = num1%10;
+		System.out.println(x);
 		System.out.println(reverse(num1));
 	}
 	

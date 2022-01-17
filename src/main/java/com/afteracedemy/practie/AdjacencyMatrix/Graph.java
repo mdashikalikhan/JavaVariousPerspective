@@ -56,3 +56,52 @@ public class Graph {
 	}
 	
 }
+
+/*class Solution {
+    public int knight(int A, int B, int C, int D, int E, 
+                      int F) {
+    	// write your awesome code here 
+        LinkedList<String> queue = new LinkedList<>();
+        int dx={-2,-2,-1,1,-1,1,2,2};
+        int dy={1,-1,-2,-2,2,2,-1,1};
+        Set<String> visited = new HashSet<>();
+        int moves = 0;
+        if(C==E && D==F){
+            return moves;
+        }
+        String tmp = "";
+        if(isInside(C,D,A,B)==1){
+            tmp = C + "," +D;
+            queue.push(tmp);
+        }
+        
+        while(!queue.isEmpty()){
+            String strV = queue.poll();
+            visited.add(strV);
+            int x = (int)strV.split(",")[0];
+            int y = (int)strV.split(",")[1];
+            for(int i=0; i<8; i++){
+                if(isInside(x+dx[i],y+dy[i],A,B)==1){
+                    tmp = (x+dx[i]) + "," + (y+dy[i]);
+                    if( (x+dx[i]) ==E && y+dy[i]==F){
+                        return moves + 1;
+                    }
+                    if(!visited.contains(tmp)){
+                        visited.add(tmp);
+                        queue.push(tmp);
+                    }
+                }
+            }
+            moves++;
+        }
+        
+        return -1;
+    }
+    
+    public int isInside(int x, int y, int A, int B){
+        if(x<0 || y<0 || x>=A || y>=B){
+            return 0;
+        }
+        return 1;
+    }
+}*/
