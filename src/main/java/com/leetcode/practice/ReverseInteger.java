@@ -6,6 +6,9 @@ public class ReverseInteger {
 		int x = num1%10;
 		System.out.println(x);
 		System.out.println(reverse(num1));
+		System.out.println(0x7fffffff);
+		
+		System.out.println(746384741);
 	}
 	
 	public static int reverse(int x) {
