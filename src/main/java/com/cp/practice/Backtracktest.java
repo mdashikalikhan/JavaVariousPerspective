@@ -1,6 +1,7 @@
 package com.cp.practice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Backtracktest {
 	public static void main(String[] args) {
@@ -8,7 +9,10 @@ public class Backtracktest {
 		
 		int target =7;
 		
-		backtrack(nums, target, 0, new ArrayList<Integer>());
+		//backtrack(nums, target, 0, new ArrayList<Integer>());
+		int[][] intervals = {{2,2,},{1,3},{2,4},{2,9},{1,4}};
+		Arrays.sort(intervals,(a,b)->(a[0]!=b[0]?a[0]-b[0]:b[1]-a[1]));
+		System.out.println(Arrays.deepToString(intervals));
 	}
 	
 	public static void backtrack(int[]nums, int target,  int start, ArrayList<Integer> tmpList) {
