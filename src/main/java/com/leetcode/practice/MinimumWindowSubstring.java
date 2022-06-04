@@ -13,12 +13,10 @@ public class MinimumWindowSubstring {
 
 		HashMap<Character, Integer> occurrences = new HashMap<>();
 
-		HashMap<Character, Integer> rOccurrences = new HashMap<>();
 
-		int totalNeed = 0;
+		
 		for ( char c : t.toCharArray() ) {
 			occurrences.put(c, occurrences.getOrDefault(c, 0) + 1);
-			totalNeed += 1;
 		}
 
 		int windowStart = 0;
@@ -26,41 +24,47 @@ public class MinimumWindowSubstring {
 		int matched = 0;
 
 		int minLen = Integer.MAX_VALUE;
+		
+		int substrStart = 0;
 
-		String result = "";
 
-		for ( int windowEnd = 0; windowEnd < s.length(); windowEnd++ ) {
+		for(int windowEnd=0; windowEnd<s.length(); windowEnd++) {
 			char current = s.charAt(windowEnd);
-			if (occurrences.containsKey(current)) {
-				rOccurrences.put(current, rOccurrences.getOrDefault(current, 0) + 1);
-				if (rOccurrences.get(current) <= occurrences.get(current)) {
+			
+			if(occurrences.containsKey(current)) {
+				occurrences.put(current, occurrences.get(current) - 1);
+				if(occurrences.get(current)>=0) {
 					matched++;
 				}
 			}
-
-			if (matched == totalNeed) {
-				if (windowEnd - windowStart + 1 < minLen) {
+			
+			while(matched==t.length()) {
+				if(windowEnd-windowStart+1<minLen) {
 					minLen = windowEnd - windowStart + 1;
-					result = s.substring(windowStart, windowEnd + 1);
+					substrStart = windowStart;
 				}
-
-				while (true) {
-					char firstChar = s.charAt(windowStart);
-					if (rOccurrences.getOrDefault(firstChar, 0) > 0) {
-						if (rOccurrences.get(firstChar) == occurrences.get(firstChar)) {
-							matched--;
-							rOccurrences.put(firstChar, rOccurrences.get(firstChar) - 1);
-							windowStart++;
-							break;
-						}
-						rOccurrences.put(firstChar, rOccurrences.get(firstChar) - 1);
+				System.out.println(occurrences);
+				System.out.println(windowStart + "   "  + windowEnd);
+				char startChar = s.charAt(windowStart);
+				
+				if(occurrences.containsKey(startChar)) {
+					if(occurrences.get(startChar)==0) {
+						matched--;
 					}
-					windowStart++;
+					
+					occurrences.put(startChar, occurrences.get(startChar) + 1);
+					
 				}
+				
+				windowStart++;
+				
 			}
-
+			
 		}
+		
 
-		return result;
+		
+
+		return minLen==Integer.MAX_VALUE ? "" : s.substring(substrStart, substrStart+minLen);
 	}
 }
