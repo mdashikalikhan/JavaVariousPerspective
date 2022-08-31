@@ -1,10 +1,11 @@
 package com.twitter.snowflake;
 
+import java.math.BigInteger;
 import java.net.NetworkInterface;
 import java.security.SecureRandom;
-import java.text.*;
+
 import java.time.Instant;
-import java.util.*;
+
 import java.util.Enumeration; 
 
 public class SequenceGenerator {
@@ -31,11 +32,13 @@ public class SequenceGenerator {
     	System.out.println(gen.nextId());
     	System.out.println(gen.nextId());
     	System.out.println(gen.nextId());
-    	System.out.println(gen.getTime(gen.nextId()));
-    	System.out.println(gen.getTime(gen.nextId()));
-    	System.out.println(gen.getTime(gen.nextId()));
-    	System.out.println(gen.nextId());
-        System.out.println(Math.random() * 2); 
+    	
+    	System.out.println((long)(1L<<64L));
+        System.out.println(Long.MAX_VALUE);
+        BigInteger b = new BigInteger("9999999999999999999");
+        System.out.println(b);
+        Long l = 1004717251419537408L;
+        System.out.println(l);
 	}
 
     // Create SequenceGenerator with a nodeId
@@ -52,7 +55,7 @@ public class SequenceGenerator {
     }
 
     public synchronized long nextId() {
-        long currentTimestamp = timestamp();
+        long currentTimestamp = timestamp(); 
 
         if(currentTimestamp < lastTimestamp) {
             throw new IllegalStateException("Invalid System Clock!");
@@ -91,16 +94,7 @@ public class SequenceGenerator {
         return currentTimestamp;
     }
     
-    public static String getTime(long uuid) {
-    	Date date = new Date(uuid);
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        format.setTimeZone(TimeZone.getTimeZone("Etc/UTC"));
-        String formatted = format.format(date);
-        System.out.println(formatted);
-        format.setTimeZone(TimeZone.getTimeZone("Australia/Sydney"));
-        formatted = format.format(date);
-        return formatted;
-    }
+    
     
     private int createNodeId() {
         int nodeId;

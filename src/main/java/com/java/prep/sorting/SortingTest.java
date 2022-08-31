@@ -6,7 +6,7 @@ import java.util.List;
 
 public class SortingTest {
 	public static void main(String[] args) {
-		/*List<Employee> listEmployee = new ArrayList<>();
+		List<Employee> listEmployee = new ArrayList<>();
 		Employee e1 = new Employee(1, "ABC", 40);
 		Employee e2 = new Employee(2, "DEF", 30);
 		Employee e3 = new Employee(3, "GHI", 20);
@@ -21,11 +21,11 @@ public class SortingTest {
 		
 		Collections.sort(listEmployee, new AgeComparator());
 		
-		System.out.println(listEmployee);*/
+		System.out.println(listEmployee);
 		
-		for(int i=1; i<=5; i++) {
+		/*for(int i=1; i<=5; i++) {
 			System.out.println(++i);
-		}
+		}*/
 		
 	}
 }
