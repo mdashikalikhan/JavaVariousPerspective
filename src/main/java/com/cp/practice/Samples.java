@@ -12,7 +12,11 @@ public class Samples {
         arr[0]=6;
         arr[1]=6;
         arr[0]=5;
+        
+
         System.out.println(Arrays.toString(arr));
+
+        
         
     }
     public static void main(String[] args) {
@@ -20,6 +24,12 @@ public class Samples {
         Samples s1 = new Samples();
         Samples s2 = new Samples();
         Samples s3 = new Samples();
+
+        int a = 0;
+        int x = a++ + ++a;
+
+        System.out.println(a);
+        System.out.println(x);
     }
 }
 
