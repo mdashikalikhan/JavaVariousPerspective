@@ -40,7 +40,7 @@ class Base1{
     }
 }
 
-class Child1 extends Base1{
+class Child1 extends Base1{ 
     @Override
     public final void m1() {
         // TODO Auto-generated method stub
