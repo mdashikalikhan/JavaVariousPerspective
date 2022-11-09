@@ -26,10 +26,10 @@ public class Samples {
         Samples s3 = new Samples();
 
         int a = 0;
-        int x = a++ + ++a;
+        a = a++ + ++a;
 
         System.out.println(a);
-        System.out.println(x);
+        //System.out.println(x);
     }
 }
 
