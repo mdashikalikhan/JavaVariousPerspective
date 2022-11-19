@@ -1,6 +1,12 @@
 package com.cp.practice;
 
-public class Test {
+import java.io.Serializable;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.TemporalAdjusters;
+
+public class Test implements Serializable {
     int a = 1;
     int b = 2;
  
@@ -26,5 +32,13 @@ public class Test {
         System.out.println(str1.equals(str2));
         System.out.println(str1==str3);
         System.out.println(str1==str2);
+        
+        System.gc();
+        
+        Object result = LocalDate.of(2030, Month.SEPTEMBER, 21)
+                .with(TemporalAdjusters.next(DayOfWeek.FRIDAY))
+                .plusDays(7)
+                .minusWeeks(4).getDayOfWeek();
+        System.out.println(result);
     }
 }
