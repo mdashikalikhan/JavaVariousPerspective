@@ -18,5 +18,13 @@ public class Test {
  
         System.out.println("obj1.a = " + obj1.a + "  obj1.b = " + obj1.b);
         System.out.println("obj2.a = " + obj2.a + "  obj1.b = " + obj2.b);
+        
+        String str1 ="abc";
+        String str2 ="abc";
+        String str3 =new String("abc");
+        System.out.println(str1.equals(str3));
+        System.out.println(str1.equals(str2));
+        System.out.println(str1==str3);
+        System.out.println(str1==str2);
     }
 }
