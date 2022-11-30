@@ -65,6 +65,20 @@ public class StreamExample1 {
         productList.stream().filter(p->p.getPrice()>=4000)
         .map(p->p.getId() + " " + p.getPrice())
         .forEach(System.out::println);
+        
+        Stream.iterate(1, element->element+1)
+        .filter(element -> element%5==0)
+        .limit(10)
+        .forEach(System.out::println);
+        
+        double price1 = productList.stream().map(p->p.getPrice())
+                        .reduce(0.0, (sum, a) -> sum+a);
+        System.out.println(price1);
+        
+        double price2 = productList.stream().map(p->p.getPrice())
+                        .reduce(0.0, Double::sum);
+        System.out.println(price1);
+        
     }
 }
 
