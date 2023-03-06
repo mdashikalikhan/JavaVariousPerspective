@@ -79,6 +79,18 @@ public class StreamExample1 {
                         .reduce(0.0, Double::sum);
         System.out.println(price1);
         
+        double priceOver2000 = productList.stream().filter(p->p.getPrice()>2000)
+                                .map(p->p.getPrice()).reduce(0.0, Double::sum);
+        System.out.println(priceOver2000);
+        
+        
+        Product productA = productList.stream().min((p1,p2)->p1.getPrice()>p2.getPrice()?1:-1).get() ;
+        
+        System.out.println(productA);
+        
+        Product productB = productList.stream().max((p1,p2)->p1.getPrice()>p2.getPrice()?1:-1).get();
+        
+        System.out.println(productB);
     }
 }
 

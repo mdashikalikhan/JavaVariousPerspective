@@ -23,5 +23,11 @@ public class DecimalTest {
 		
 		BigDecimal bg = BigDecimal.valueOf(43434.987);
 		System.out.println("bg value = " + bg.negate());
+		
+		System.out.println(10000*10*97);
+		/*
+		 * 1=10
+		 * 2=2*10
+		 */
 	}
 }

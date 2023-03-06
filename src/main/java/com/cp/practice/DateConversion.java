@@ -14,7 +14,7 @@ public class DateConversion {
         System.out.println(localDate); 
 
         char c = '1';
-        String s = (String) c;
+        //String s = (String) c;
     }
 
 }

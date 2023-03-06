@@ -16,6 +16,9 @@ public class MergeIntervals {
     public static int[][] mergeAllIntevals(int[][] intervals) {
         
         Arrays.sort(intervals, (a,b)->a[0]-b[0]);
+        
+        //Arrays.sort(points, Comparator.comparingDouble(o -> o[0]));
+        
         LinkedList<int[]> list = new LinkedList<>();
         
         for(int[]interval : intervals) {
